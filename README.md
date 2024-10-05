@@ -7,4 +7,4 @@ Project 1: https://github.com/Jenny-Holth/FYS-STK3155/tree/main/Project%201
 
 
 
-- Alexander Schei & Jenny Holth Hartting
+Alexander Schei & Jenny Holth Hartting
