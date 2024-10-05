@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 Created on Sat Oct  5 10:19:51 2024
 
-@author: Alexander Schei & Jenny Holth Harrting
+@author: Alexander Schei & Jenny Holth Hartting
 
 
 ###The bootstrap function is based on code from Hjorth-Jensen, M. (2021) Applied data analysis and machine learning section 5.4:  
