@@ -2,7 +2,7 @@
 """
 Created on Sat Oct  5 10:18:33 2024
 
-@author: Alexander Schei
+@author: Alexander Schei & Jenny Holth Hartting
 """
 
 import numpy as np
