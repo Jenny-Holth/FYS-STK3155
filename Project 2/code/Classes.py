@@ -257,7 +257,8 @@ class Gradient(NeuralNetwork):
         Outputs:
         -Sets up initial conditions for optimizer parameters (like momentum, squared gradients).
         """
-
+        np.random.seed(2024)
+        random.seed(2024)
         if gradient_type == "Normal" or "AutoGrad":
             self.theta = np.random.rand(self.p).reshape(-1,1)
             self.thetaprevious = self.theta.copy()
@@ -347,7 +348,7 @@ class Gradient(NeuralNetwork):
             thetagd = super().create_layers_batch()
             self.initialize_optimizer_parameters(thetagd, gradient_type)
 
-        thetaprevious = np.zeros_like(thetagd)
+        
         while np.max(test) >= self.tolerance:
             self.iter += 1
 
@@ -368,7 +369,7 @@ class Gradient(NeuralNetwork):
             if self.iter % 50 == 0:
                 if self.check_tolerance(thetaprevious, thetagd, self.tolerance) or self.iter>self.max_iter:
                     break
-                thetaprevious = np.copy(thetagd)
+                thetaprevious = deepcopy(thetagd)
             
         return thetagd
 
