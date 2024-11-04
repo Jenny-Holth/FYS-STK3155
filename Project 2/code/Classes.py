@@ -1,6 +1,6 @@
 """
 Code is made using Python version 3.9.20. 
-We have used Python libraries numpy, scikit-learn, plt, seaborn, autograd and numba. 
+We have used Python libraries numpy, scikit-learn, matplotlib, seaborn, autograd and numba. 
 Code built on other work is cited above relevant classes/functions.
 """
 import numpy as npy
@@ -348,7 +348,7 @@ class Gradient(NeuralNetwork):
             thetagd = super().create_layers_batch()
             self.initialize_optimizer_parameters(thetagd, gradient_type)
 
-        
+        thetaprevious = np.zeros_like(thetagd for layers in thetagd)
         while np.max(test) >= self.tolerance:
             self.iter += 1
 
