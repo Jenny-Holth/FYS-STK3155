@@ -1,6 +1,6 @@
 """
 Code is made using Python version 3.9.20. 
-We have used Python libraries numpy, scikit-learn, plt,  seaborn, autograd and numba. 
+We have used Python libraries numpy, scikit-learn, matplotlib,  seaborn, autograd and numba. 
 Code built on other work is cited above relevant classes/functions.
 """
 import numpy as np
