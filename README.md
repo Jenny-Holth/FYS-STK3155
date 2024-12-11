@@ -6,6 +6,8 @@ Project 1: https://github.com/Jenny-Holth/FYS-STK3155/tree/main/Project%201
 
 Project 2: https://github.com/Jenny-Holth/FYS-STK3155/tree/main/Project%202
 
+Project 3: https://github.com/Jenny-Holth/FYS-STK3155/tree/main/Project%203
+
 
 
 Alexander Schei & Jenny Holth Hartting
