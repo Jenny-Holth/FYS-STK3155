@@ -83,13 +83,13 @@ def get_data(DataType, DataAmount):
         x_test = x_test.reshape(-1, p, k, 1)
 
     elif DataType == "Skl_LR":
-        x_train = x_train.reshape(len(x_train), p*k) / 255.0    #255.0 to make greyscale
+        x_train = x_train.reshape(len(x_train), p*k) / 255.0     # Scaling  
         x_test = x_test.reshape(len(x_test), p*k) / 255.0
 
     else:
         y_train = tf.keras.utils.to_categorical(y_train, num_classes=10)
         y_test = tf.keras.utils.to_categorical(y_test, num_classes=10)
-        x_train = x_train.reshape(len(x_train), p*k) / 255.0             #255.0 to make greyscale
+        x_train = x_train.reshape(len(x_train), p*k) / 255.0             # Scaling
         x_test = x_test.reshape(len(x_test), p*k) / 255.0
 
     return x_train, x_test, y_train, y_test
@@ -109,8 +109,8 @@ def save_data(Matrix, Param1, Param1_Values, Param2, Param2_Values, Filename):
     os.makedirs(".\\data", exist_ok=True)
     df = pd.DataFrame(
         Matrix,
-        index=[f"{Param1}={par1}" for par1 in Param1_Values],  # Rader
-        columns=[f"{Param2}={par2}" for par2 in Param2_Values]  # Kolonner
+        index=[f"{Param1}={par1}" for par1 in Param1_Values],  
+        columns=[f"{Param2}={par2}" for par2 in Param2_Values]  
     )
     df.to_csv(f".\\data\\{Filename}.txt", sep='\t')
 
@@ -126,7 +126,7 @@ def save_load_data_single(Filename, Predictions=None, Targets=None, Scores=None,
     if not Save:
         df_loaded = pd.read_csv(f".\\data\\{Filename}.txt", sep='\t')
 
-        # Konverter kolonner til lister
+        
         Predictions = df_loaded['Prediction'].tolist()
         Targets = df_loaded['Target'].tolist()
         Scores = df_loaded['Scores'].tolist()
@@ -170,7 +170,8 @@ def load_data(Filename):
 def Create_Keras(input_shape, kernel,n_filters, 
                      n_neurons_connected, n_categories, eta, lmbd, neurons, n_layers, CNN=True):
     """
-    Creates and compiles a Keras model for either a Convolutional Neural Network (CNN) or a Fully Connected Neural Network (FCNN).
+    Creates and compiles a Keras model for either a Convolutional Neural Network (CNN), Feed Forward Neural Network (FNN) 
+    or Logistic Regression (LR).
 
     Inputs:
     - input_shape (tuple): Shape of the input data.
@@ -192,6 +193,11 @@ def Create_Keras(input_shape, kernel,n_filters,
     keras.utils.set_random_seed(2024)
     model = Sequential()
 
+    """
+    The following Keras CNN structure follows a code example by Morten Hjorth-Jensen in FYS-STK3155 
+    at https://compphysics.github.io/MachineLearning/doc/LectureNotes/_build/html/chapter12.html#the-mnist-dataset-again 
+    """
+                         
     if CNN:
         model.add(Input(shape=input_shape))
         model.add(Conv2D(n_filters, kernel, padding='same',
@@ -203,7 +209,7 @@ def Create_Keras(input_shape, kernel,n_filters,
                 activation='relu', kernel_regularizer=regularizers.l2(lmbd), strides=(1,1) ))
         model.add(MaxPooling2D(pool_size=(2, 2)))
 
-        model.add(Flatten(name='flatten'))  # Gi Flatten-laget et navn
+        model.add(Flatten(name='flatten'))  
 
         model.add(Dense(n_neurons_connected, activation='relu', kernel_regularizer=regularizers.l2(lmbd)))
         model.add(Dense(n_categories, activation='softmax', kernel_regularizer=regularizers.l2(lmbd)))
@@ -709,7 +715,7 @@ def heatmap_acc(Matrix, Title,Param1Name, Param2Name, Param1, Param2, Figsize = 
             colorbar.set_label("Accuracy", size=17)
 
             vmin, vmax = colorbar.vmin, colorbar.vmax
-            ticks = np.linspace(vmin, vmax, num=5)  # Velg 5 ticks som standard
+            ticks = np.linspace(vmin, vmax, num=5)  
             colorbar.set_ticks(ticks)
             colorbar.set_ticklabels([f"{tick:.2f}" for tick in ticks])
 
